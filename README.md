@@ -21,3 +21,8 @@ You can download the dataset from the [link](https://pan.baidu.com/s/1Pr0Z7UCHG2
 ```
 python main.py --set Ours --root $YOU_PATH$ -b 32
 ```
+### Testing
+
+```
+python main.py --set Ours --root $YOU_PATH$ --test_mode True --resume $MODEL_PATH$
+```
