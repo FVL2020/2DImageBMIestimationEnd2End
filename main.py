@@ -37,6 +37,8 @@ parser.add_argument('--wd', '--weight-decay', default=1e-3, type=float,
 parser.add_argument('--resume', default='SEDensenet121_3CWithMask_2048-1-batch_32/model_epoch_50.ckpt', type=str,
                     metavar='PATH',
                     help='path to latest checkpoint (default: none)')
+parser.add_argument('--test_mode', default=False, type=bool,
+                    help='If to test the checkpoint (default: False)')
 parser.add_argument('--seed', default=0, type=int,
                     help='seed for initializing training. (default: 0)')
 parser.add_argument('--gpu', default='0', type=str,
@@ -70,9 +72,13 @@ def main():
     scheduler = None  # optim.lr_scheduler.StepLR(optimizer, 10, 0.1)
 
     trainer = Trainer(model, DEVICE, optimizer, criterion, save_dir=args.save_dir)
-    # trainer.load(args.resume)
-    trainer.Loop(args.epochs, train_loader, val_loader, scheduler)
-    trainer.test(test_loader, sex='diff')
+    if len(args.resume):
+        trainer.load(args.resume)
+    if args.test_mode:
+        trainer.test(test_loader, sex='diff')
+    else:
+        trainer.Loop(args.epochs, train_loader, val_loader, scheduler)
+        trainer.test(test_loader, sex='diff')
 
 
 if __name__ == '__main__':
