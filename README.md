@@ -34,3 +34,14 @@ python main.py --set Ours --root $YOU_PATH$ --test_mode True --resume $MODEL_PAT
 <div align=center>
 <img src="https://github.com/FVL2020/2DImageBMIestimationEnd2End/blob/master/img_result/demo.jpg">
 </div>
+
+### Citation
+If you find this project useful, we would be grateful if you cite this paper：
+```
+@article{attentionguid,
+author = {Zhi Jin, Junjia Huang, Aolin Xiong, Yuxian Pang, Wenjin Wang, Beichen Ding},
+journal = {Pattern Recognition Letters},
+title = {{Attention Guided Deep Features for Accurate Body Mass Index Estimation}},
+year = {2022}
+}
+```
