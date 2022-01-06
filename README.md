@@ -32,5 +32,5 @@ python main.py --set Ours --root $YOU_PATH$ --test_mode True --resume $MODEL_PAT
 
 ### Result
 <div align=center>
-<img src="https://github.com/FVL2020/2DImageBMIestimationEnd2End/blob/master/img_result/demo.jpg" width="180" height="105"> width="180" height="105"/>
+<img src="https://github.com/FVL2020/2DImageBMIestimationEnd2End/blob/master/img_result/demo.jpg"> />
 </div>
