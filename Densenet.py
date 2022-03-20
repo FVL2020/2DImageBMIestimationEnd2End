@@ -319,24 +319,6 @@ class DenseNet(nn.Module):
         self.classifier = nn.Sequential(
             nn.Linear(num_features, num_classes),
         )
-        # self.classifier = nn.Sequential(
-        #     nn.Linear(num_features, num_features//2),
-        #     nn.ReLU(inplace=True),
-        #     nn.Linear(num_features // 2, num_features // 4),
-        #     nn.ReLU(inplace=True),
-        #     nn.Linear(num_features // 4, num_features // 8),
-        #     nn.ReLU(inplace=True),
-        #     nn.Linear(128, 1),
-        # )
-        # self.classifier = nn.Sequential(
-        #     nn.Conv2d(num_features, num_features//2, kernel_size=1, stride=1, padding=0, bias=False),
-        #     nn.ReLU(inplace=True),
-        #     nn.Conv2d(num_features // 2, num_features // 4, kernel_size=1, stride=1, padding=0, bias=False),
-        #     nn.ReLU(inplace=True),
-        #     nn.Conv2d(num_features // 4, num_features // 8, kernel_size=1, stride=1, padding=0, bias=False),
-        #     nn.ReLU(inplace=True),
-        #     nn.Conv2d(num_features // 8, num_classes, kernel_size=1, stride=1, padding=0, bias=False),
-        # )
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -349,14 +331,9 @@ class DenseNet(nn.Module):
         features = self.features(x)
         out = F.relu(features, inplace=True)
 
-        # out = nn.Conv2d(1024, 1, kernel_size=1, stride=1, bias=False)(out)
-        # out = nn.ReLU()(out)
         out = F.adaptive_avg_pool2d(out, (1, 1))
-        # print(out.shape)
         out = torch.flatten(out, 1)
         out = self.classifier(out)
-        # out = torch.unsqueeze(torch.squeeze(out), 1)
-        # print(out.shape)
         return out
 
 

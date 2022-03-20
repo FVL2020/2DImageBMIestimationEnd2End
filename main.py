@@ -7,13 +7,16 @@ import os
 import argparse
 from torchvision import models
 import matplotlib.pyplot as plt
+# import os
+# os.environ["CUDA_VISIBLE_DEVICES"] = "7"
+
 
 parser = argparse.ArgumentParser(description='PyTorch BMI')
 
 parser.add_argument('--datasetmode', default='3CWithMask', type=str, help='Type of dataset')
-parser.add_argument('--set', default='Ours', type=str,
+parser.add_argument('--set', default='Our', type=str,
                     help='Dataset to use.')
-parser.add_argument('--root', default='datasets', type=str,
+parser.add_argument('--root', default='YOU_PATH', type=str,
                     help='Path to Dataset.')
 parser.add_argument('--save-dir', default='SEDensenet121', type=str,
                     help='path to save models and state')
@@ -34,7 +37,7 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
 parser.add_argument('--wd', '--weight-decay', default=1e-3, type=float,
                     metavar='W', help='weight decay (default: 1e-3)',
                     dest='weight_decay')
-parser.add_argument('--resume', default='SEDensenet121_3CWithMask_2048-1-batch_32/model_epoch_50.ckpt', type=str,
+parser.add_argument('--resume', default='MODEL_PATH', type=str,
                     metavar='PATH',
                     help='path to latest checkpoint (default: none)')
 parser.add_argument('--test_mode', default=False, type=bool,
@@ -72,9 +75,9 @@ def main():
     scheduler = None  # optim.lr_scheduler.StepLR(optimizer, 10, 0.1)
 
     trainer = Trainer(model, DEVICE, optimizer, criterion, save_dir=args.save_dir)
-    if len(args.resume):
+    if len(args.resume) and args.test_mode:
         trainer.load(args.resume)
-    if args.test_mode:
+    # if args.test_mode:
         trainer.test(test_loader, sex='diff')
     else:
         trainer.Loop(args.epochs, train_loader, val_loader, scheduler)

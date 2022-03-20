@@ -1,5 +1,3 @@
-from Resnet import ResNet
-from Resnet import Bottleneck
 from SENET import SEBottleneck
 from CBAM import CBAMBottleneck
 # from seresnext import seresnext101_32x8d
@@ -7,50 +5,11 @@ import torch.nn as nn
 from Densenet import *
 from SKNet import SKNet
 import torchvision.models as models
-# from cnn_finetune import make_model
-from thop import profile
-from mobilenetv3 import mobilenetv3_large,mobilenetv3_small
 
-def MobileNetv3(mode = 'large', num_classes=1):
-    if mode == 'large':
-        Net = mobilenetv3_large()
-        Net.load_state_dict(torch.load('MobileNet_pretrained/mobilenetv3-large-1cd25616.pth'))
-    else:
-        Net = mobilenetv3_small()
-        Net.load_state_dict(torch.load('MobileNet_pretrained/mobilenetv3-small-55df8e1f.pth'))
-    return Net
 
 
 def SKNet101(num_classes=1):
     model = SKNet(num_classes, [3, 4, 23, 3])
-    return model
-
-
-def SEResnet50(num_classes=1):
-    model = ResNet(SEBottleneck, [3, 4, 6, 3], num_classes=num_classes)
-    model.avgpool = nn.AdaptiveAvgPool2d(1)
-    return model
-
-
-def SEResnet101(num_classes=1):
-    model = ResNet(SEBottleneck, [3, 4, 23, 3], num_classes=num_classes)
-    return model
-
-
-def CBAMResnet50(num_classes=1):
-    model = ResNet(CBAMBottleneck, [3, 4, 6, 3], num_classes=num_classes)
-    model.avgpool = nn.AdaptiveAvgPool2d(1)
-    return model
-
-
-def CBAMResnet101(num_classes=1):
-    model = ResNet(CBAMBottleneck, [3, 4, 23, 3], num_classes=num_classes)
-    model.avgpool = nn.AdaptiveAvgPool2d(1)
-    return model
-
-
-def Resnet101(num_classes=1):
-    model = ResNet(Bottleneck, [3, 4, 23, 3], num_classes=num_classes)
     return model
 
 
@@ -146,11 +105,6 @@ def Resnext50(num_classes=1):
         nn.ReLU(True),
         nn.Linear(256, num_classes),
     )
-    return model
-
-
-def SEResnext101(num_classes=1):
-    model = seresnext101_32x8d(num_classes=num_classes)
     return model
 
 
