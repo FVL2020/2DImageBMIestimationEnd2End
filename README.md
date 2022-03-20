@@ -18,6 +18,9 @@ opencv-python
 ```
 ### Dataset
 You can download the dataset from the [BaidudetDisk](https://pan.baidu.com/s/1Pr0Z7UCHG2R1pnP3a2BVkw), the code is `FVL1`, or from the [Google Driver](https://drive.google.com/file/d/11P1NvO9cAM62TGgtwbPv9iUGjsx7b6IA/view?usp=sharing).
+
+### Checkpoints
+You can download the checkpoints from the [Google Driver](https:).
 ## Usage
 ### Training
 
