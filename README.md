@@ -38,7 +38,7 @@ python main.py --set Ours --root $YOU_PATH$ --test_mode True --resume $MODEL_PAT
 <img src="https://github.com/FVL2020/2DImageBMIestimationEnd2End/blob/master/img_result/demo.jpg">
 </div>
 
-### Citation
+### Reference
 If you find this project useful, we would be grateful if you cite this paper：
 ```
 @article{attentionguid,
@@ -48,3 +48,5 @@ title = {{Attention Guided Deep Features for Accurate Body Mass Index Estimation
 year = {2022}
 }
 ```
+### License
+This repository is released under the MIT License as found in the LICENSE file. Code in this repo is for non-commercial use only.
